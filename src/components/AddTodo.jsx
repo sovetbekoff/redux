@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../store/todoSlice";
+import { useNavigate } from "react-router-dom";
 
 const AddTodo = () => {
   const [todoContent, setTodoContext] = useState("");
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
   function createTodo() {
     if (!todoContent.trim()) return alert("inp ok");
 
@@ -17,6 +19,7 @@ const AddTodo = () => {
 
     dispatch(addTodo(newTodo));
     setTodoContext("");
+    navigate("/");
   }
 
   return (
