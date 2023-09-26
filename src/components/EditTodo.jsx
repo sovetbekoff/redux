@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { getOnetodo } from "../store.todoSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { getOneTodo, saveChanges } from "../store/todoSlice";
+import Input from "@mui/material/Input";
+import { Button } from "@mui/material";
 
 const EditTodo = () => {
   const { oneTodo } = useSelector((state) => state.todos);
@@ -26,19 +27,21 @@ const EditTodo = () => {
       {oneTodo ? (
         <div>
           <h3>Edit Todo</h3>
-          <input
+          {/* <input */}
+
+          <Input
             type="text"
             onChange={(e) => setTodo({ ...todo, body: e.target.value })}
             value={todo.body}
           />
-          <button
+          <Button
             onClick={() => {
               dispatch(saveChanges(todo));
               navigate("/");
             }}
           >
             save canges
-          </button>
+          </Button>
         </div>
       ) : (
         <h5>loading...</h5>
